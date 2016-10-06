@@ -38,6 +38,16 @@ public class CheckListController {
 		
 	}
 	
+	
+	@RequestMapping(value = "/deleteCheck",method = RequestMethod.GET)
+	public String deleteCheck(@RequestParam int id, ModelMap model){
+		model.clear();
+		chkListService.deleteTodo(id);
+		
+		return "redirect:checkList";
+		
+	}
+	
 	@RequestMapping(value = "/add-check",method = RequestMethod.POST)
 	public String addChecknow(@RequestParam String name, String desc, ModelMap model){
 		
