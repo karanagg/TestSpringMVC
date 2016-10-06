@@ -6,11 +6,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.karan.login.LoginService;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 	
 	@Autowired
@@ -25,6 +25,7 @@ public class LoginController {
 	@RequestMapping (value = "/login", method = RequestMethod.POST)
     public String showLoginPost(@RequestParam String name, String password, ModelMap model){
 		System.out.println(name);
+		System.out.println(password);
 		if(logService.validateUser(name, password)){
 		model.put("name",name);
 		model.put("password",password);

@@ -6,17 +6,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Service
+@SessionAttributes("name")
 public class CheckListService {
 	
 	private static List<CheckList> todos = new ArrayList<CheckList>();
 	private static int todoCount = 3;
 
 	static {
-		todos.add(new CheckList(1, "in28Minutes", "Learn Spring MVC", new Date(),false));
-		todos.add(new CheckList(2, "in28Minutes", "Learn Struts", new Date(), false));
-		todos.add(new CheckList(3, "in28Minutes", "Learn Hibernate", new Date(),false));
+		todos.add(new CheckList(1, "Karan", "Learn Spring MVC", new Date(),false));
+		todos.add(new CheckList(2, "Karan", "Learn Struts", new Date(), false));
+		todos.add(new CheckList(3, "Karan", "Learn Hibernate", new Date(),false));
 	}
 
 	public List<CheckList> retrieveTodos(String user) {
