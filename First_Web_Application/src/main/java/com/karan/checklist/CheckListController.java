@@ -41,8 +41,10 @@ public class CheckListController {
 	@RequestMapping(value = "/add-check",method = RequestMethod.POST)
 	public String addChecknow(@RequestParam String name, String desc, ModelMap model){
 		
+	
 		chkListService.addTodo(name, desc, new Date(), false);
-		System.out.println("Desc"+name);
+		System.out.println("Desc"+desc);
+		//model.clear();
 	
 		return "redirect:checkList";
 		
