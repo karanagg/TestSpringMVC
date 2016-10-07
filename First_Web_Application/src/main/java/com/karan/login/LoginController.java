@@ -1,11 +1,13 @@
 package com.karan.login;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 
@@ -17,18 +19,19 @@ public class LoginController {
 	LoginService logService;
 	
 	@RequestMapping (value = "/login", method = RequestMethod.GET)
-     public String showLogin(){
+     public String showLogin(ModelMap model){
 		System.out.println("inside show login ");
+		model.addAttribute("Login",new Login("test","sdsd"));
     	 return "login";
      }
 	
 	@RequestMapping (value = "/login", method = RequestMethod.POST)
-    public String showLoginPost(@RequestParam String name, String password, ModelMap model){
-		System.out.println(name);
-		System.out.println(password);
-		if(logService.validateUser(name, password)){
-		model.put("name",name);
-		model.put("password",password);
+    public String showLoginPost(ModelMap model, @Valid Login login, BindingResult result ){
+		
+	
+		if(logService.validateUser(login.getUser(), login.getPassword())){
+		model.put("name",login.getUser());
+		model.put("password",login.getPassword());
    	 		return "welcome";
 		}else{
 			model.put("errorMessage","Invalid Credentials");

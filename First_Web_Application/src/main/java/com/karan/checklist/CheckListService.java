@@ -21,6 +21,11 @@ public class CheckListService {
 		todos.add(new CheckList(3, "Karan", "Learn Hibernate", new Date(),false));
 	}
 
+	/**
+	 * Retrieve Todos based on User
+	 * @param user
+	 * @return
+	 */
 	public List<CheckList> retrieveTodos(String user) {
 		List<CheckList> filteredTodos = new ArrayList<CheckList>();
 		for (CheckList todo : todos) {
@@ -29,6 +34,48 @@ public class CheckListService {
 		}
 		return filteredTodos;
 	}
+	/**
+	 * RetrieveTods based on ID
+	 * @param id
+	 * @return
+	 */
+	/*public List<CheckList> updateTodos(CheckList chkList) {
+		List<CheckList> filteredTodos = new ArrayList<CheckList>();
+		for (CheckList todo : todos) {
+			if (todo.getId()==(chkList.getId())){
+				System.out.println("Before removal"+todos);
+				//todos.remove(todo);
+			    deleteTodo(chkList.getId());
+				System.out.println("After removal"+todos);
+				
+			}
+			 //   todos.add(chkList);
+			    System.out.println("After loading"+todos);
+		}
+		return filteredTodos;
+	}
+	*/
+	
+	public void updateTodos(CheckList chkList) {
+		deleteTodo(chkList.getId());
+		todos.add(chkList);
+	}
+	
+	/**
+	 * RetrieveTods based on ID
+	 * @param id
+	 * @return
+	 */
+	public List<CheckList> retrieveTodos(int id) {
+		List<CheckList> filteredTodos = new ArrayList<CheckList>();
+		for (CheckList todo : todos) {
+			if (todo.getId()==(id))
+				filteredTodos.add(todo);
+		}
+		return filteredTodos;
+	}
+
+
 
 	public void addTodo(String name, String desc, Date targetDate, boolean isDone) {
 		todos.add(new CheckList(++todoCount, name, desc, targetDate, isDone));
