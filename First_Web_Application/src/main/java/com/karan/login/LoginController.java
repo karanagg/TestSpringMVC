@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("name")
 public class LoginController {
 	
-	@Autowired
+/*	@Autowired
 	LoginService logService;
-	
-	@RequestMapping (value = "/login", method = RequestMethod.GET)
+	*/
+	@RequestMapping (value = "/", method = RequestMethod.GET)
      public String showLogin(ModelMap model){
 		System.out.println("inside show login ");
-		model.addAttribute("Login",new Login("test","sdsd"));
-    	 return "login";
+		model.addAttribute("name","Karan");
+    	 return "welcome";
      }
 	
-	@RequestMapping (value = "/login", method = RequestMethod.POST)
+/*	@RequestMapping (value = "/login", method = RequestMethod.POST)
     public String showLoginPost(ModelMap model, @Valid Login login, BindingResult result ){
 		
 	
@@ -37,6 +37,6 @@ public class LoginController {
 			model.put("errorMessage","Invalid Credentials");
 			return "login";
 		}
-    }
+    }*/
 
 }

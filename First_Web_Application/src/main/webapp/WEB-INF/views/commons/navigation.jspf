@@ -6,8 +6,12 @@
 	</div>
 	<div class="navbar-collapse">
 		<ul class="nav navbar-nav">
-			<li id="cjeck2"><a href="/login">Home</a></li>
+			<li id="cjeck2"><a href="/">Home</a></li>
 			<li id="check"><a href="/checkList">Check List</a></li>
 		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/logout">Logout</a></li>
+		</ul>
 	</div>
+
 </nav>

@@ -4,7 +4,7 @@
 <body>
 	<div class="container">
 		<table class="table table-striped">
-    <caption>Your CheckList ${name}</caption>
+    <caption><spring:message code="checkList.caption"/> ${name}</caption>
     		<thead>
 				<tr>
 				    <th>ID</th>
@@ -12,7 +12,7 @@
 					<th>Date</th>
 					<th>Completed</th>
 				</tr>
-			</thead>
+			</thead> 
 
 <c:forEach items="${checkList}" var="checkList">
 <tr><td>${checkList.id}</td>

@@ -14,6 +14,5 @@
    <input class="btn btn-success" type="submit" value="LOGIN"/>
     </form:form>
      <%@ include file="commons/footer.jspf" %>
- <%@ include file="commons/footer.jspf" %>
     </body>
     </html>

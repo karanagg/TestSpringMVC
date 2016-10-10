@@ -3,13 +3,21 @@ package com.karan.checklist;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CheckListController {
 	
-	
+	private Log logger = LogFactory.getLog(CheckListController.class);
 	@Autowired
 	CheckListService chkListService;
 
@@ -33,18 +41,28 @@ public class CheckListController {
 	public String showCheckList(ModelMap model){
 		
 		
-		model.addAttribute("checkList",chkListService.retrieveTodos("Karan"));
+		model.addAttribute("checkList",chkListService.retrieveTodos(getLoggedInUserName()));
 		
 		return "checkList";
 		
+	}
+
+	private String getLoggedInUserName() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetails)
+		return ((UserDetails) principal).getUsername();
+
+	    return principal.toString();
 	}
 	
 	
 	@RequestMapping(value = "/add-check",method = RequestMethod.GET)
 	public String addCheck(ModelMap model){		
-		model.addAttribute("checkList",new CheckList(0, "Karan", "Testing", null, false));		
+		throw new RuntimeException("Dummy Exception");
+		/*
+		model.addAttribute("checkList",new CheckList(0, getLoggedInUserName(), "Testing", null, false));		
 		return "addCheck";
-		
+		*/
 	}
 	
 	
@@ -96,7 +114,13 @@ public class CheckListController {
 		
 	}
 	
-	
+/*	
+	@ExceptionHandler(value = Exception.class)
+	public String handleError(HttpServletRequest req, Exception exception) {
+		logger.error("Request: " + req.getRequestURL() + " raised " + exception);
+		return "errorController";
+	}
+	*/
 	@RequestMapping(value = "/add-check",method = RequestMethod.POST)
 	public String addChecknow(ModelMap model, @Valid CheckList chkList,  BindingResult result){
 		if(result.hasErrors()){
