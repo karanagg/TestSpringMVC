@@ -4,12 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.karan.util.Language;
+import com.karan.util.LanguageCountry;
 
 
 @Controller
@@ -30,6 +32,10 @@ public class CheckListController {
 	private Log logger = LogFactory.getLog(CheckListController.class);
 	@Autowired
 	CheckListService chkListService;
+	
+	@Autowired
+	@Qualifier("languageCountry") 
+	LanguageCountry languageCountry;
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder){		
@@ -40,7 +46,9 @@ public class CheckListController {
 	@RequestMapping(value = "/checkList",method = RequestMethod.GET)
 	public String showCheckList(ModelMap model){
 		
+		List<Language> lang = languageCountry.getLanguages("AU");
 		
+		System.out.println("Languages"+lang.get(0).getCode());
 		model.addAttribute("checkList",chkListService.retrieveTodos(getLoggedInUserName()));
 		
 		return "checkList";

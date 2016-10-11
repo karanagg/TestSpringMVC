@@ -34,4 +34,7 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 </property>
 </bean>
 
+ <import resource="classpath:/countries-and-languages.xml"/>
+  <import resource="classpath:/KaranTesting.xml"/>
+
 </beans>

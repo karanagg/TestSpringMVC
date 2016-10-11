@@ -1,0 +1,120 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="languageCountry" class="com.karan.util.LanguageCountry">
+        <property name="languageListMap" ref="languageListMap"/>
+    </bean>
+
+    <util:map id="languageListMap" key-type="com.karan.util.Language" value-type="java.util.List">
+        <entry key="ENGLISH_AUSTRALIA">
+            <list value-type="java.lang.String">
+                <value>AU</value>
+                <value>NZ</value>
+            </list>
+        </entry>
+        <entry key="ENGLISH_UNITED_STATES">
+            <list value-type="java.lang.String">
+                <value>US</value>
+                <value>PR</value>
+            </list>
+        </entry>
+        <entry key="ENGLISH_CANADA">
+            <list value-type="java.lang.String">
+                <value>CA</value>
+            </list>
+        </entry>
+        <entry key="ENGLISH_UNITED_KINGDOM">
+            <list value-type="java.lang.String">
+                <value>GB</value>
+                <value>IE</value>
+
+                <!--Arabic countries-->
+                <value>SA</value>
+                <value>AE</value>
+                <value>KW</value>
+                <value>BH</value>
+                <value>OM</value>
+                <value>QA</value>
+                <value>EG</value>
+                <value>SY</value>
+                <value>LB</value>
+                <value>JO</value>
+                <value>LY</value>
+                <value>IQ</value>
+                <value>SD</value>
+                <value>YE</value>
+                <value>PS</value>
+
+                <!-- Russian Countries -->
+                <value>AM</value>
+                <value>AZ</value>
+                <value>BY</value>
+                <value>RU</value>
+                <value>KZ</value>
+                <value>MD</value>
+                <value>UA</value>
+                <value>GE</value>
+                <value>TM</value>
+                <value>TJ</value>
+                <value>KG</value>
+                <value>UZ</value>
+
+            </list>
+        </entry>
+        <entry key="DUTCH_NETHERLANDS">
+            <list value-type="java.lang.String">
+                <value>NL</value>
+            </list>
+        </entry>
+        <entry key="DUTCH_BELGIUM">
+            <list value-type="java.lang.String">
+                <value>BE</value>
+            </list>
+        </entry>
+		<entry key="GERMAN_GERMANY">
+            <list value-type="java.lang.String">
+                <value>DE</value>
+            </list>
+        </entry>
+        <entry key="ARABIC_SOUTH_ARABIA">
+            <list value-type="java.lang.String">
+                <value>SA</value>
+                <value>AE</value>
+                <value>KW</value>
+                <value>BH</value>
+                <value>OM</value>
+                <value>QA</value>
+                <value>EG</value>
+                <value>SY</value>
+                <value>LB</value>
+                <value>JO</value>
+                <value>LY</value>
+                <value>IQ</value>
+                <value>SD</value>
+                <value>YE</value>
+                <value>PS</value>
+            </list>
+        </entry>
+        <entry key="RUSSIAN_RUSSIAN">
+            <list value-type="java.lang.String">
+                <value>AM</value>
+                <value>AZ</value>
+                <value>BY</value>
+                <value>RU</value>
+                <value>KZ</value>
+                <value>MD</value>
+                <value>UA</value>
+                <value>GE</value>
+                <value>TM</value>
+                <value>TJ</value>
+                <value>KG</value>
+                <value>UZ</value>
+            </list>
+        </entry>
+    </util:map>
+</beans>
